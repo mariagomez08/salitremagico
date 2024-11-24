@@ -45,6 +45,10 @@
                 <input type="number" th:field="*{estaturaMinima}" class="form-control" id="estaturaMinima" step="0.01"
                     required />
             </div>
+
+            
+
+            <input type="hidden" name="precio" th:value="${precio}">
             <button type="submit" class="btn btn-primary mt-3">
                 <span th:text="${atraccion.id != null} ? 'Actualizar Atracción' : 'Registrar Atracción'"></span>
             </button>

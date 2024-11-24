@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{menu.html}">
+
+<head>
+    <meta charset="utf-8">
+    <title>Registrar entrada</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h1>Registrar Entrada a la Atracción</h1>
+
+        <form th:action="@{/operador/entradas/{id}/validar(id=${id})}" method="post">
+    
+
+            <div>
+                <label for="atraccionId">Atracción</label>
+                <select id="atraccionId" name="atraccionId" required>
+                    <option th:each="atraccion : ${atracciones}" th:value="${atraccion.id}"
+                        th:text="${atraccion.nombre}">
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit">Registrar Entrada</button>
+        </form>
+    </div>
+</body>
+
+</html>

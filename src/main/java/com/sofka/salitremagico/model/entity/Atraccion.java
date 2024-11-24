@@ -50,6 +50,9 @@ public class Atraccion {
     @Column(nullable = false)
     private String condiciones;
 
+    @Column(nullable = false)
+    private Double precio;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EstadoAtraccion estado;

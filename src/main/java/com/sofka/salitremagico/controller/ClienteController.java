@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,6 +36,24 @@ public class ClienteController {
         model.addObject("cedula", cedula);
         return model;
     }
+
+
+
+    @GetMapping("/operador/registrar-clientes")
+    public ModelAndView listarClientesOperador(@RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String cedula) {
+        ModelAndView model = new ModelAndView("/operador/clientes");
+        if (cedula != null && !cedula.isEmpty()) {
+            Cliente cliente = clienteService.buscarPorCedula(cedula);
+            model.addObject("cliente", cliente);
+        } else {
+            Page<Cliente> clientes = clienteService.listarClientesPaginados(PageRequest.of(page, 5));
+            model.addObject("clientes", clientes);
+        }
+        model.addObject("cedula", cedula);
+        return model;
+    }
+
+
 
     @GetMapping("/logistica/clientes/registrar")
     public ModelAndView registrarCliente() {

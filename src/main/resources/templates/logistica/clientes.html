@@ -79,7 +79,7 @@
                             <span th:if="${cliente.edad >= 18}">No aplica</span>
                         </td>
                         <td>
-                            <a th:href="@{'/logistica/tiquetes/registrar?clienteId=' + ${cliente.id}}" class="btn btn-success btn-sm">Registrar Tiquetes</a>
+                            <a th:href="@{'/logistica/tiquetes/{id}/registrar' (id=${cliente.id})}" class="btn btn-success btn-sm">Registrar Tiquetes</a>
                         </td>
                     </tr>
                     </tbody>

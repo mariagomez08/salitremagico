@@ -1,5 +1,7 @@
 package com.sofka.salitremagico.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,11 +19,9 @@ public class AtraccionService {
         this.atraccionRepository = atraccionRepository;
     }
 
- 
-
     public Atraccion actualizarEstado(Long atraccionId, EstadoAtraccion estadoAtraccion) {
         Atraccion atraccion = atraccionRepository.findById(atraccionId)
-            .orElseThrow(() -> new IllegalArgumentException("Atracción no encontrada"));
+                .orElseThrow(() -> new IllegalArgumentException("Atracción no encontrada"));
 
         atraccion.setEstado(estadoAtraccion);
         return atraccionRepository.save(atraccion);
@@ -31,12 +31,39 @@ public class AtraccionService {
         return atraccionRepository.findAll(pageable);
     }
 
-    public Atraccion registrarAtraccion(Atraccion atraccion) {
-        return atraccionRepository.save(atraccion);
+    public Atraccion registrarAtraccion(Atraccion datosActualizados) {
+
+        Atraccion atraccionExistente = atraccionRepository.findById(datosActualizados.getId())
+                .orElseThrow(() -> new RuntimeException("Atracción no encontrada"));
+
+        if (datosActualizados.getPrecio() == null) {
+            datosActualizados.setPrecio(atraccionExistente.getPrecio());
+        }
+
+        atraccionExistente.setNombre(datosActualizados.getNombre());
+        atraccionExistente.setDescripcion(datosActualizados.getDescripcion());
+        atraccionExistente.setCondiciones(datosActualizados.getCondiciones());
+        atraccionExistente.setClasificacion(datosActualizados.getClasificacion());
+        atraccionExistente.setEstaturaMinima(datosActualizados.getEstaturaMinima());
+        atraccionExistente.setVisitas(datosActualizados.getVisitas());
+
+        return atraccionRepository.save(atraccionExistente);
+    }
+
+    public List<Atraccion> listarAtracciones() {
+        return atraccionRepository.findAll();
+    }
+
+    public List<Atraccion> listarAtraccionesDisponibles() {
+        List<Atraccion> atracciones = atraccionRepository.findAll(); 
+        return atracciones.stream() 
+                .filter(atraccion -> atraccion.getEstado().equals(EstadoAtraccion.DISPONIBLE))                                                                     
+                .collect(Collectors.toList()); 
     }
 
     public Atraccion buscarAtraccionPorId(Long id) {
-        return atraccionRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Atracción no encontrada"));
+        return atraccionRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Atracción no encontrada"));
     }
 
 }

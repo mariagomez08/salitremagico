@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{menu.html}">
+
+<head>
+    <meta charset="utf-8">
+    <title>Venta de tiques</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h1>Registrar Tiquete</h1>
+
+        <!-- Formulario de registro -->
+        <form th:action="@{/logistica/tiquetes/{id}/registrar(id=${clienteId})}" method="post">
+
+            <!-- Selección de Atracción -->
+            <div class="mb-3">
+                <label for="atraccion" class="form-label">Atracción</label>
+                <select id="atraccion" name="atraccionId" class="form-control" onchange="actualizarPrecio()">
+                    <option value="">Seleccione una atracción</option>
+                    <option th:each="atraccion : ${atracciones}" th:value="${atraccion.id}"
+                        th:text="${atraccion.nombre + ' - $' + atraccion.precio}"  data-precio="${atraccion.precio}">
+                    </option>
+                </select>
+            </div>
+
+            <!-- Selección de Estación -->
+            <div class="mb-3">
+                <label for="estacion" class="form-label">Estación</label>
+                <select id="estacion" name="estacionId" class="form-control">
+                    <option value="">Seleccione una estación</option>
+                    <option th:each="estacion : ${estaciones}" th:value="${estacion.id}" th:text="${estacion.nombre}">
+                    </option>
+                </select>
+            </div>
+            <input type="hidden" name="clienteId" th:value="${clienteId}"/>
+            <!-- Botón de registro -->
+            <button type="submit" class="btn btn-primary">Registrar Tiquete</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

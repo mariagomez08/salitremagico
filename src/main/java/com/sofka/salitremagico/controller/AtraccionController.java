@@ -1,5 +1,7 @@
 package com.sofka.salitremagico.controller;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -9,10 +11,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sofka.salitremagico.model.entity.Atraccion;
 import com.sofka.salitremagico.model.values.EstadoAtraccion;
+
 import com.sofka.salitremagico.service.AtraccionService;
 
 @Controller
@@ -32,12 +36,27 @@ public class AtraccionController {
     }
 
     @GetMapping("/mantenimiento/atracciones")
-    public ModelAndView listarAtraccionesMantenimiento(@PageableDefault(sort = "nombre") Pageable pageable) {
-        Page<Atraccion> atracciones = atraccionService.listarAtraccion(pageable);
+    public ModelAndView listarAtraccionesMantenimiento() {
+        List<Atraccion> atracciones = atraccionService.listarAtracciones();
         return new ModelAndView("/mantenimiento/atracciones")
+                .addObject("estados", EstadoAtraccion.values())
                 .addObject("atracciones", atracciones);
     }
 
+    @GetMapping("/operador/{id}/registrar")
+    public ModelAndView mostrarRegistroEntrada(@PathVariable Long id) {
+        List<Atraccion> atracciones = atraccionService.listarAtraccionesDisponibles(); 
+        return new ModelAndView("/operador/registrar-entrada")
+                .addObject("atracciones",atracciones)
+                .addObject("id", id);
+    }
+
+
+    @PostMapping("/mantenimiento/atracciones/modificar")
+    public String modificarEstado(@RequestParam Long id, @RequestParam EstadoAtraccion estado) {
+        atraccionService.actualizarEstado(id, estado);
+        return "redirect:/mantenimiento/atracciones";
+    }
     
 
     @GetMapping("/administrativo/atracciones/{id}/editar")

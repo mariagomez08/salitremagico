@@ -1,6 +1,7 @@
 package com.sofka.salitremagico.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,16 @@ public class TiqueteService {
     private final EstacionRepository estacionRepository;
     private final ClienteRepository clienteRepository;
 
-    public Tiquete registrarTiquete(Long clienteId, Long atraccionId, Long estacionId, Double precio) {
+    public List<Estacion> listarestacion() {
+        return estacionRepository.findAll();
+    }
+
+    public List<Atraccion> listaratraccion() {
+        return atraccionRepository.findAll();
+    }
+
+
+    public Tiquete registrarTiquete(Long clienteId, Long atraccionId, Long estacionId) {
         Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new CustomException("Cliente no encontrado", HttpStatus.NOT_FOUND));
         Atraccion atraccion = atraccionRepository.findById(atraccionId)
@@ -49,7 +59,7 @@ public class TiqueteService {
         tiquete.setAtraccion(atraccion);
         tiquete.setEstacion(estacion);
         tiquete.setFechaVenta(LocalDateTime.now());
-        tiquete.setPrecio(precio);
+        tiquete.setPrecio(atraccion.getPrecio());
 
         return tiqueteRepository.save(tiquete);
     }

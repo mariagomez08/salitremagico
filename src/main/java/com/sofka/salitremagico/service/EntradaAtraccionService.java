@@ -43,6 +43,7 @@ public class EntradaAtraccionService {
         EntradaAtraccion entrada = new EntradaAtraccion();
         entrada.setCliente(cliente);
         entrada.setAtraccion(atraccion);
+        entrada.setFechaEntrada(java.time.LocalDateTime.now());
         return entradaAtraccionRepository.save(entrada);
     }
 
