@@ -52,6 +52,9 @@ public class Cliente {
     @JoinColumn(name = "contacto_familiar_id")
     private ContactoFamiliar contactoFamiliar;
 
+    @Column(nullable = false, columnDefinition = "INT DEFAULT 0")
+    private int visitas;
+
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tiquete> tiquetes;
 

@@ -1,5 +1,7 @@
 package com.sofka.salitremagico.service;
 
+
+
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -38,6 +40,11 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
+
+    public List<Cliente> obtenerClientesFrecuentes(int minVisitas) {
+        return clienteRepository.findClientesConVisitas(minVisitas);
+    }
+
     public Page<Cliente> listarClientesPaginados(PageRequest pageRequest) {
         return clienteRepository.findAll(pageRequest);
     }
@@ -49,6 +56,13 @@ public class ClienteService {
 
     public Cliente buscarPorCedula(String cedula) {
         return clienteRepository.findByCedula(cedula).orElse(null);
+    }
+
+    public void incrementarVisitasCliente(Long clienteId) {
+        Cliente cliente = clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+        cliente.setVisitas(cliente.getVisitas() + 1);
+        clienteRepository.save(cliente);
     }
 
     public void eliminarCliente(Long id) {

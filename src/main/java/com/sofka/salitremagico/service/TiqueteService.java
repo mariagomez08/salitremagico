@@ -37,6 +37,13 @@ public class TiqueteService {
         return atraccionRepository.findAll();
     }
 
+    public void incrementarVisitasCliente(Long clienteId) {
+        Cliente cliente = clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+        cliente.setVisitas(cliente.getVisitas() + 1);
+        clienteRepository.save(cliente);
+    }
+
 
     public Tiquete registrarTiquete(Long clienteId, Long atraccionId, Long estacionId) {
         Cliente cliente = clienteRepository.findById(clienteId)
@@ -53,6 +60,8 @@ public class TiqueteService {
         if (!estacion.getEstado().equals(EstadoEstacion.HABILITADA)) {
             throw new CustomException( "La estación no está habilitada.", HttpStatus.BAD_REQUEST);
         }
+
+        incrementarVisitasCliente(cliente.getId());
 
         Tiquete tiquete = new Tiquete();
         tiquete.setCliente(cliente);
