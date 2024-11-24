@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{menu.html}">
+      <head>
+        <meta charset="utf-8">
+        <title>Estaciones</title>
+        </head>
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-5">
+            <h1>Listado de Estaciones</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="estacion : ${estaciones}">
+                    <td th:text="${estacion.id}"></td>
+                    <td th:text="${estacion.nombre}"></td>
+                    <td th:text="${estacion.estado}"></td>
+                    <td>
+                        <form th:action="@{/administrativo/estaciones/modificar}" method="post" class="d-inline">
+                            <input type="hidden" name="id" th:value="${estacion.id}">
+                            <select name="estado" class="form-select form-select-sm d-inline w-auto">
+                                <option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}"
+                                        th:selected="${estacion.estado == estado}"></option>
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-sm">Actualizar</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-end"><strong>Ocupación del parque:</strong></td>
+                        <td th:text="${ocupacionParque}"></td>
+                    </tr>
+                    </tfoot>
+            </table>
+        </div>
+      </div> 
+</body>
+</html>

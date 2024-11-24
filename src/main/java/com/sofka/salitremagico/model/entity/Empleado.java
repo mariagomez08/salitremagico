@@ -29,7 +29,7 @@ public class Empleado {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String cedula;
 
     @Enumerated(EnumType.STRING)

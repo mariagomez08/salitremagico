@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{menu.html}">
+      <head>
+        <meta charset="utf-8">
+        <title>Registrar Cliente</title>
+        </head>
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-5">
+            <h1>Registrar Cliente</h1>
+            <form th:action="@{/logistica/clientes/registrar}" method="post" enctype="application/x-www-form-urlencoded>
+                <!-- Otros campos del cliente -->
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" th:value="${cliente.nombre}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="cedula">Cédula</label>
+                    <input type="text" id="cedula" name="cedula" th:value="${cliente.cedula}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="edad">Edad</label>
+                    <input type="number" id="edad" name="edad" th:value="${cliente.edad}" class="form-control" oninput="toggleContactForm()" required>
+                </div>
+                <div class="form-group">
+                    <label for="estatura">Estatura</label>
+                    <input type="number" id="estatura" name="estatura" th:value="${cliente.estatura}" class="form-control" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo</label>
+                    <input type="email" id="correo" name="correo" th:value="${cliente.correo}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono" name="telefono" th:value="${cliente.telefono}" class="form-control" required>
+                </div>
+    
+                <!-- Formulario de Contacto Familiar -->
+                <div id="contactoFamiliarForm" style="display: none;">
+                    <h3>Contacto Familiar</h3>
+                    <div class="form-group">
+                        <label for="nombreContacto">Nombre del Contacto</label>
+                        <input type="text" id="nombreContacto" name="nombreContacto" th:value="${contactoFamiliar.nombre}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefonoContacto">Teléfono del Contacto</label>
+                        <input type="text" id="telefonoContacto" name="telefonoContacto" th:value="${contactoFamiliar.telefono}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="parentescoContacto">Parentesco</label>
+                        <input type="text" id="parentescoContacto" name="parentescoContacto" th:value="${contactoFamiliar.parentesco}" class="form-control">
+                    </div>
+                </div>
+    
+                <button type="submit" class="btn btn-primary mt-3">Registrar</button>
+            </form>
+        </div>
+        </div>
+
+        <div layout:fragment="scripts">
+            <script>
+                // Función que se ejecuta al cambiar el valor de la edad
+                function toggleContactForm() {
+                    var edad = document.getElementById("edad").value;
+                    var contactoFamiliarForm = document.getElementById("contactoFamiliarForm");
+        
+                    // Si la edad es menor a 18, muestra el formulario de contacto familiar
+                    if (edad < 18) {
+                        contactoFamiliarForm.style.display = "block";
+                    } else {
+                        contactoFamiliarForm.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
+    </div> 
+</body>
+</html>
+

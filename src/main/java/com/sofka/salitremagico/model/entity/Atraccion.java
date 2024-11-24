@@ -44,6 +44,11 @@ public class Atraccion {
     @Column(nullable = false)
     private Double estaturaMinima;
 
+    @Column(nullable = false) 
+    private Integer visitas = 0;
+
+    @Column(nullable = false)
+    private String condiciones;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

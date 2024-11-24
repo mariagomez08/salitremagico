@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import java.text.NumberFormat;
 
 import org.springframework.context.annotation.Bean;
+import org.thymeleaf.dialect.springdata.SpringDataDialect;
 
 @Slf4j
 @SpringBootApplication
@@ -15,10 +16,15 @@ public class SalitreMagicoApplication {
   public static void main(String[] args) {
     SpringApplication.run(SalitreMagicoApplication.class, args);
   }
+
   @Bean
-    public CommandLineRunner memInfoRunner() {
+  public CommandLineRunner memInfoRunner() {
         return args -> printInfo();
-    }
+  }
+  @Bean
+  public SpringDataDialect springDataDialect() {
+      return new SpringDataDialect();
+  }
 
     public void printInfo() {
         Runtime runtime = Runtime.getRuntime();

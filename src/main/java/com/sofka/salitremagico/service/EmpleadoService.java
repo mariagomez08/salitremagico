@@ -1,7 +1,9 @@
 package com.sofka.salitremagico.service;
 
-import java.util.List;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sofka.salitremagico.model.entity.Empleado;
@@ -20,7 +22,19 @@ public class EmpleadoService {
         return empleadoRepository.save(empleado);
     }
 
-    public List<Empleado> listarEmpleados() {
-        return empleadoRepository.findAll();
+    public Page<Empleado> listarEmpleados(Pageable pageable) {
+        return empleadoRepository.findAll(pageable);
+    }
+
+    public Empleado obtenerEmpleadoPorId(Long id) {
+        return empleadoRepository.findById(id).orElse(null);
+    }
+
+    public Empleado actualizarEmpleado(Empleado empleado) {
+        return empleadoRepository.save(empleado);
+    }
+
+    public void eliminarEmpleado(Long id) {
+        empleadoRepository.deleteById(id);
     }
 }

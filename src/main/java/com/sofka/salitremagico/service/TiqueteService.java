@@ -21,7 +21,6 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-
 public class TiqueteService {
 
     private final TiqueteRepository tiqueteRepository;

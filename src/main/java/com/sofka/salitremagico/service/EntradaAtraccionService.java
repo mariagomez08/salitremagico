@@ -1,6 +1,5 @@
 package com.sofka.salitremagico.service;
 
-import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -39,13 +38,12 @@ public class EntradaAtraccionService {
             throw new CustomException( CustomMessages.ESTATURA_INSUFICIENTE, HttpStatus.BAD_REQUEST);
         }
 
+        entradaAtraccionRepository.incrementarVisitas(atraccionId);
+
         EntradaAtraccion entrada = new EntradaAtraccion();
         entrada.setCliente(cliente);
         entrada.setAtraccion(atraccion);
         return entradaAtraccionRepository.save(entrada);
     }
 
-    public List<Object[]> obtenerEstadisticasDeUso() {
-        return entradaAtraccionRepository.obtenerEstadisticasDeUso();
-    }
 }

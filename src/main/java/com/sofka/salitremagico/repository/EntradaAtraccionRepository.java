@@ -1,14 +1,18 @@
 package com.sofka.salitremagico.repository;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.sofka.salitremagico.model.entity.EntradaAtraccion;
 
 public interface EntradaAtraccionRepository extends JpaRepository<EntradaAtraccion, Long> {
 
-    @Query("SELECT a.nombre, COUNT(e) FROM EntradaAtraccion e JOIN e.atraccion a GROUP BY a.nombre ORDER BY COUNT(e) DESC")
-    List<Object[]> obtenerEstadisticasDeUso();
+    @Modifying
+    @Query("UPDATE Atraccion a SET a.visitas = a.visitas + 1 WHERE a.id = :atraccionId")
+    void incrementarVisitas(@Param("atraccionId") Long atraccionId);
+
+    
 }

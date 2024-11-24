@@ -1,5 +1,7 @@
 package com.sofka.salitremagico.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sofka.salitremagico.model.entity.Atraccion;
@@ -15,6 +17,8 @@ public class AtraccionService {
         this.atraccionRepository = atraccionRepository;
     }
 
+ 
+
     public Atraccion actualizarEstado(Long atraccionId, EstadoAtraccion estadoAtraccion) {
         Atraccion atraccion = atraccionRepository.findById(atraccionId)
             .orElseThrow(() -> new IllegalArgumentException("Atracción no encontrada"));
@@ -23,12 +27,16 @@ public class AtraccionService {
         return atraccionRepository.save(atraccion);
     }
 
-    public Atraccion actualizarDescripcion(Long atraccionId, String descripcion, String clasificacion) {
-        Atraccion atraccion = atraccionRepository.findById(atraccionId)
-            .orElseThrow(() -> new IllegalArgumentException("Atracción no encontrada"));
+    public Page<Atraccion> listarAtraccion(Pageable pageable) {
+        return atraccionRepository.findAll(pageable);
+    }
 
-        atraccion.setDescripcion(descripcion);
-        atraccion.setClasificacion(clasificacion);
+    public Atraccion registrarAtraccion(Atraccion atraccion) {
         return atraccionRepository.save(atraccion);
     }
+
+    public Atraccion buscarAtraccionPorId(Long id) {
+        return atraccionRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Atracción no encontrada"));
+    }
+
 }

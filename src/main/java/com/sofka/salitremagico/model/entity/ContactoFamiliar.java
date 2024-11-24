@@ -24,13 +24,13 @@ public class ContactoFamiliar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String nombre;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String telefono;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String parentesco;
 
     @OneToOne(mappedBy = "contactoFamiliar", cascade = CascadeType.ALL)

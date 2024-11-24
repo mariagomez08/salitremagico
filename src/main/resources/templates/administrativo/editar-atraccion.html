@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{menu.html}">
+
+<head>
+    <meta charset="utf-8">
+    <title>Editar Atracción</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h2 th:text="${atraccion.id != null} ? 'Editar Atracción' : 'Registrar Atracción'"></h2>
+
+        <form th:object="${atraccion}"
+            th:action="${atraccion.id != null} ? @{/administrativo/atracciones/{id}/editar(id=${atraccion.id})} : @{/atracciones/nuevo}"
+            method="POST">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" th:field="*{nombre}" class="form-control" id="nombre" required />
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <input type="text" th:field="*{descripcion}" class="form-control" id="descripcion" required />
+            </div>
+            <div class="form-group">
+                <label for="clasificacion">Clasificación</label>
+                <input type="text" th:field="*{clasificacion}" class="form-control" id="clasificacion" required />
+            </div>
+            <div class="form-group">
+                <label for="condiciones">Condiciones de uso</label>
+                <textarea th:field="*{condiciones}" class="form-control" id="condiciones" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="estado" class="form-label">Rol:</label> 
+                
+                <select id="estado" th:field="*{estado}"
+                    class="form-select" required>
+                    <option th:each="estado: ${estados}" th:value="${estado}" th:text="${estado}"></option>
+                </select>
+                <div class="invalid-feedback">Por favor selecciona un rol.</div>
+            </div>
+       
+            <div class="form-group">
+                <label for="estaturaMinima">Estatura Mínima (en metros)</label>
+                <input type="number" th:field="*{estaturaMinima}" class="form-control" id="estaturaMinima" step="0.01"
+                    required />
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">
+                <span th:text="${atraccion.id != null} ? 'Actualizar Atracción' : 'Registrar Atracción'"></span>
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>
