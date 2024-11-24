@@ -13,6 +13,8 @@ import org.thymeleaf.dialect.springdata.SpringDataDialect;
 @SpringBootApplication
 public class SalitreMagicoApplication {
 
+
+  
   public static void main(String[] args) {
     SpringApplication.run(SalitreMagicoApplication.class, args);
   }
