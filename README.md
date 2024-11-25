@@ -49,7 +49,19 @@ Antes de iniciar, asegúrate de tener instalado:
 - **PostgreSQL** como base de datos relacional.
 - **Git** para clonar el repositorio.
 - Un **IDE** como Project IDX
-- 
+  
+---
+
+# Java API Service Starter
+
+This is a minimal Java API service starter based on [Google Cloud Run Quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-java-service).
+
+## Getting Started
+
+Server should run automatically when starting a workspace. To run manually, run:
+```sh
+mvn spring-boot:run
+```
 ## **Instalación**
 
 ### **Configuración**
@@ -73,3 +85,5 @@ Antes de iniciar, asegúrate de tener instalado:
 ```bash
    cd salitremagico
    mvn spring-boot:run
+
+
