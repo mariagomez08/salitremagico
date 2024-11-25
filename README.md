@@ -42,12 +42,15 @@ La arquitectura utilizada será MVC (Modelo-Vista-Controlador) la cual se utiliz
 
 ---
 
-## Configuración y Ejecución del Proyecto
-
-### **Prerrequisitos**
-1. **Java**: JDK 11 o superior.
-2. **Maven**: Instalado y configurado en tu sistema.
-3. **PostgreSQL**: Base de datos instalada.
+## **Requisitos Previos**
+Antes de iniciar, asegúrate de tener instalado:
+- **Java Development Kit (JDK)** 17 o superior.
+- **Apache Maven** para la gestión de dependencias.
+- **PostgreSQL** como base de datos relacional.
+- **Git** para clonar el repositorio.
+- Un **IDE** como Project IDX
+- 
+## **Instalación**
 
 ### **Configuración**
 1. **Clona este repositorio**:
@@ -55,4 +58,18 @@ La arquitectura utilizada será MVC (Modelo-Vista-Controlador) la cual se utiliz
    git clone https://github.com/mariagomez08/salitremagico.git
    cd salitremagico
 
+2. **Instala las Dependencias Usa Maven para instalar las dependencias:**
+   ```bash
+   mvn clean install
 
+**Ejecución**
+
+#### **Desde el IDE**
+1. Abre el proyecto en tu IDE, preferiblemente IntelliJ IDEA o Eclipse.
+2. Ejecuta la clase principal: `SalitreMagicoApplication.java`.
+
+#### **Desde la Línea de Comandos**
+1. Ve al directorio raíz del proyecto y ejecuta la aplicacion
+```bash
+   cd salitremagico
+   mvn spring-boot:run
