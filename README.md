@@ -19,6 +19,9 @@ Este proyecto es una aplicación para gestionar las operaciones de un parque de 
    - Visualización de ocupación del parque.
 6. **Promociones**:
    - Identificación de clientes frecuentes.
+## Arquitectura del proyecto
+
+![image](https://github.com/user-attachments/assets/a7430e7b-5109-42c9-85d9-d2dd16220e97)
 
 ---
 
@@ -33,6 +36,7 @@ Este proyecto es una aplicación para gestionar las operaciones de un parque de 
 - **Otras Herramientas**:
   - Maven para gestión de dependencias.
   - Git y GitHub para control de versiones.
+  - Project IDX para el entorno de desarrollo del projecto.
 
 ---
 
