@@ -21,6 +21,8 @@ Este proyecto es una aplicación para gestionar las operaciones de un parque de 
    - Identificación de clientes frecuentes.
 ## Arquitectura del proyecto
 
+La arquitectura utilizada será MVC (Modelo-Vista-Controlador) la cual se utiliza para estructurar la capa de presentación y facilitar la interacción entre los componentes de la aplicación web, respetando la separación de responsabilidades.
+
 ![image](https://github.com/user-attachments/assets/a7430e7b-5109-42c9-85d9-d2dd16220e97)
 
 ---
