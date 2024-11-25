@@ -2,7 +2,7 @@
 
 Este proyecto es una aplicación para gestionar las operaciones de un parque de diversiones, como la administración de clientes, empleados, atracciones, y estadísticas de uso. Está desarrollado utilizando **Spring Boot**, **Thymeleaf**, **PostgreSQL**, y otras tecnologías
 
-## 📋 Funcionalidades Principales
+## Funcionalidades Principales
 1. **Registro de clientes**:
    - Permite registrar clientes con información personal.
    - Valida si el cliente es menor de edad.
@@ -22,7 +22,7 @@ Este proyecto es una aplicación para gestionar las operaciones de un parque de 
 
 ---
 
-## 🛠 Tecnologías Usadas
+## Tecnologías Usadas
 - **Backend**:
   - Java con Spring Boot (MVC)
   - Hibernate para manejo de JPA.
@@ -35,7 +35,7 @@ Este proyecto es una aplicación para gestionar las operaciones de un parque de 
 
 ---
 
-## 🚀 Configuración y Ejecución del Proyecto
+## Configuración y Ejecución del Proyecto
 
 ### **Prerrequisitos**
 1. **Java**: JDK 11 o superior.
