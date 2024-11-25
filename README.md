@@ -29,6 +29,7 @@ Este proyecto es una aplicación para gestionar las operaciones de un parque de 
   - PostgreSQL como base de datos.
 - **Frontend**:
   - Thymeleaf para renderización de vistas.
+  - Bootstrap para diseño responsivo.
 - **Otras Herramientas**:
   - Maven para gestión de dependencias.
   - Git y GitHub para control de versiones.
