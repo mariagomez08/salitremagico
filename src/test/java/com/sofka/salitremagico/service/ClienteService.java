@@ -63,13 +63,17 @@ class ClienteServiceTest {
 
         ContactoFamiliar contactoFamiliar = new ContactoFamiliar();
 
-        when(clienteRepository.save(any(Cliente.class))).thenAnswer(i -> i.getArgument(0));
+        when(clienteRepository.save(any(Cliente.class))).thenAnswer(i -> {
+            Cliente c = i.getArgument(0);
+            return c;
+        });
 
      
         Cliente resultado = clienteService.registrarCliente(cliente, contactoFamiliar);
 
 
         verify(contactoFamiliarService, times(1)).registrarContactoFamiliar(contactoFamiliar);
+        assertThat(resultado).isNotNull();
         assertThat(resultado.getContactoFamiliar()).isEqualTo(contactoFamiliar);
     }
 
@@ -82,10 +86,14 @@ class ClienteServiceTest {
         ContactoFamiliar contactoFamiliar = new ContactoFamiliar();
         contactoFamiliar.setId(1L);
 
-        when(clienteRepository.save(any(Cliente.class))).thenAnswer(i -> i.getArgument(0));
+        when(clienteRepository.save(any(Cliente.class))).thenAnswer(i -> {
+            Cliente c = i.getArgument(0);
+            return c;
+        });
 
         Cliente resultado = clienteService.registrarCliente(cliente, contactoFamiliar);
         verify(contactoFamiliarService, never()).registrarContactoFamiliar(contactoFamiliar);
+        assertThat(resultado).isNotNull();
         assertThat(resultado.getContactoFamiliar()).isEqualTo(contactoFamiliar);
     }
 
@@ -111,6 +119,7 @@ class ClienteServiceTest {
         when(clienteRepository.findAll(pageRequest)).thenReturn(page);
         Page<Cliente> resultado = clienteService.listarClientesPaginados(pageRequest);
 
+        assertThat(resultado).isNotNull();
         assertThat(resultado.getContent()).hasSize(2).contains(cliente1, cliente2);
     }
 
@@ -136,6 +145,7 @@ class ClienteServiceTest {
         Cliente resultado = clienteService.buscarPorCedula("123");
 
        
+        assertThat(resultado).isNotNull();
         assertThat(resultado).isEqualTo(cliente);
     }
 
