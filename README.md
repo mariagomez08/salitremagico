@@ -1,4 +1,4 @@
-# 🎢 Sistema de Gestión - Parque Salitre Mágico 🎠
+#  Sistema de Gestión - Parque Salitre Mágico
 
 Este proyecto es una aplicación para gestionar las operaciones de un parque de diversiones, como la administración de clientes, empleados, atracciones, y estadísticas de uso. Está desarrollado utilizando **Spring Boot**, **Thymeleaf**, **PostgreSQL**, y otras tecnologías
 
