@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.2.1</version>
+        <version>3.2.12</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.sofka</groupId>
@@ -46,11 +46,13 @@
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
 
+    
     <dependency>
-			<groupId>io.github.jpenren</groupId>
-			<artifactId>thymeleaf-spring-data-dialect</artifactId>
-			<version>3.3.1</version>
-		</dependency>
+      <groupId>io.github.jpenren</groupId>
+      <artifactId>thymeleaf-spring-data-dialect</artifactId>
+      <version>3.6.0</version>
+    </dependency>
+
     <!-- Spring Boot Starter Validation -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -73,20 +75,25 @@
     </dependency>
 
     <!-- Mockito para realizar mocks en los tests -->
-    <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>5.6.0</version> <!-- Asegúrate de usar la última versión estable -->
-        <scope>test</scope>
+
+        <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.23.0</version>
+      <scope>test</scope>
     </dependency>
 
+
     <!-- AssertJ para aserciones fluidas -->
-    <dependency>
-        <groupId>org.assertj</groupId>
-        <artifactId>assertj-core</artifactId>
-        <version>3.24.2</version> <!-- Asegúrate de usar la última versión estable -->
-        <scope>test</scope>
+
+
+        <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>3.24.2</version>
+      <scope>test</scope>
     </dependency>
+
 
     <!-- Opcional: JUnit 5 (viene incluido en spring-boot-starter-test) -->
     <dependency>
@@ -96,16 +103,28 @@
     </dependency>
 
     <!-- Lombok (Para reducir el boilerplate en el código) -->
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <scope>provided</scope>
+
+        <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.46</version>
+      <scope>provided</scope>
     </dependency>
+
 
     <dependency>
       <groupId>jakarta.persistence</groupId>
       <artifactId>jakarta.persistence-api</artifactId>
       <version>3.1.0</version>
+    </dependency>
+
+    
+    <!-- Pin Postgres driver to a recent patch version -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.7.11</version>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 
